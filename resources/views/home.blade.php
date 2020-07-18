@@ -19,9 +19,11 @@
                 <div class="pr-5"><strong>580K</strong> Followers</div>
                 <div class="pr-5"><strong>200K</strong> Following</div>
               </div>
-              <div class="pt-3 font-weight-bold">photoholic.com</div>
-              <div>Join in and start uploading pictures</div>
-              <div><a link rel="stylesheet" href="#">photoholic.com</a></div>
+              <!-- $user->profile->title -->
+              <!-- first we get the user then the profile and then the specific title -->
+              <div class="pt-3 font-weight-bold">{{ $user->profile->title }}</div>
+              <div>{{ $user->profile->description }}</div>
+              <div><a link rel="stylesheet" href="#">{{ $user->profile->url }}</a></div>
             
         </div>
     </div>

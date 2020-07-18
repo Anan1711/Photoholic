@@ -15,7 +15,8 @@ class ProfilesController extends Controller
         // and storing it inside a variable 
         // then passing it to the view as an array
         // now we can use user in our view
-        $user = (User::find($user)); 
+        // 'findOrFail' Preventing breakdown of the app if users are trying to access a profile that doesn't exist 
+        $user = (User::findOrFail($user)); 
         return view('home', [
             'user' => $user,
         ]);

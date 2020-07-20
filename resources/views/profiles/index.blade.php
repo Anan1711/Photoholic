@@ -13,7 +13,12 @@
         <div class="col-9 p-5">
             
             <!-- passing the value -->
-            <div><h1>{{$user->username}}</h1></div>
+            <!-- justify-content-between pushes all the way right -->
+            <!-- align-items-baseline alligns with other contents -->
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{$user->username}}</h1>
+                <a href="#">Add New Post</a>
+            </div>
               <div class="d-flex">
                 <div class="pr-5"><strong>789</strong> Posts</div>
                 <div class="pr-5"><strong>580K</strong> Followers</div>

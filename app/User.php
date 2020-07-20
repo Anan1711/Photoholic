@@ -43,4 +43,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    // a user can have many posts
+    // hasMany relation that's why posts 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

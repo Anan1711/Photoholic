@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostsController extends Controller
 {
@@ -35,19 +36,36 @@ class PostsController extends Controller
 
         ]);
 
+        // stroing the image using store method
+        // first parameter is a folder
+        // second parameter is a directory
+        // but not accessable by user beacause storage/app/public is not accessable by user
+        // we need to create a link from public/storage to storage/app/public 
+        // run php artisan storage:link
+        $imagePath = request('image')->store('uploads', 'public');
+
+
+        // resizing the imgae using intervention image library
+        // rapping up the image by using make which is an intervention class
+        // fitting by using fit
+        $image = Image::make(public_path("storeage/{$imagePath}"))->fit(1200,1200);
+        $image->save();
+
         // we are not passing user id that's why we are getting error
         // we might not be signed in
         // we need to get the authenticated user
         // we will get the user id from the relationship
         // we don't need \App\Post::create($data) now
         // it will go to user then to posts method and save that post
-        auth()->user()->posts()->create($data);;
+        auth()->user()->posts()->create([
+            'caption' => $data['caption'],
+            'image' => $imagePath,
+        ]);
 
         // easy way of saving data in our database
         // we have all the date in $data 
         // \App\Post::create($data);
 
-        dd(request()->all());
-        //return view('posts.create');
+        return redirect('/profile/' . auth()->user()->id);
     }
 }

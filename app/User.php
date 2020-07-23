@@ -48,6 +48,7 @@ class User extends Authenticatable
     // hasMany relation that's why posts 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        // ordering the post by when created and in descending order
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 }

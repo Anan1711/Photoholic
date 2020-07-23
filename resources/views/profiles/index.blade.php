@@ -17,10 +17,10 @@
             <!-- align-items-baseline alligns with other contents -->
             <div class="d-flex justify-content-between align-items-baseline">
                 <h1>{{$user->username}}</h1>
-                <a href="#">Add New Post</a>
+                <a href="/p/create">Add New Post</a>
             </div>
               <div class="d-flex">
-                <div class="pr-5"><strong>789</strong> Posts</div>
+              <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> Posts</div>
                 <div class="pr-5"><strong>580K</strong> Followers</div>
                 <div class="pr-5"><strong>200K</strong> Following</div>
               </div>
@@ -37,15 +37,14 @@
     <!-- class ="w-100" will reszie all the image -->
     <!-- right click and hit inspect and find the image to get the links -->
     <div class="row pt-5">
-        <div class="col-4">
-              <img src="https://instagram.fdac31-1.fna.fbcdn.net/v/t51.2885-15/e35/c0.120.960.960a/s480x480/81559121_166010994653484_7679389688102043184_n.jpg?_nc_ht=instagram.fdac31-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=TJI0MEXr6M8AX9KZlnr&oh=8c7fb514750e37a662d13837ca0d86a9&oe=5F39BE39" class="w-100">
-        </div>
-        <div class="col-4">
-            <img src="https://instagram.fdac31-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/c0.94.756.756a/s640x640/36913809_2092225631015801_2916451775177293824_n.jpg?_nc_ht=instagram.fdac31-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=mhHcVjG7NlcAX95Ebgy&oh=906a94a666d44f242227cc3194829efd&oe=5F38E19D" class="w-100">
-        </div>
-        <div class="col-4">
-            <img src="https://instagram.fdac31-1.fna.fbcdn.net/v/t51.2885-15/e35/c240.0.960.960a/s320x320/81517650_1494131184078123_5198104108178991623_n.jpg?_nc_ht=instagram.fdac31-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=oxh_KGevnv0AX9H4FtN&oh=c12e6563ab3cc0dd1d984a8f484d00c9&oe=5F3A5565" class="w-100">
-        </div>
+        <!-- retreiving the image -->
+        @foreach ($user->posts as $post)
+          <div class="col-4 pb-4">
+            <img src="/storage/{{ $post->image }}" class="w-100">
+          </div>
+        @endforeach
+        
+        
     </div>
 
 </div>

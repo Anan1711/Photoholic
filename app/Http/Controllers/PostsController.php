@@ -68,4 +68,11 @@ class PostsController extends Controller
 
         return redirect('/profile/' . auth()->user()->id);
     }
+
+    // fetching the model Post
+    public function show(\App\Post$post)
+    {
+        // compact will match the request and fetch the post
+        return view('posts.show' , compact('post'));
+    }
 }
